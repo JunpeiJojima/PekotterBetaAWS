@@ -1,0 +1,206 @@
+@charset "UTF-8";
+html{
+	font-size: 100%;
+}
+
+body{
+	/* background-color: #fffeee;
+	background-image: url(../image/peko1.jpg);
+	background-repeat: no-repest;
+	background-size: cover; */
+	line-height: 1.7; 
+	color: #432;
+}
+
+.topImage{
+		background-size: cover;
+	background-position: center top; 
+	background-repeat: no-repeat; 
+		background-image: url(../image/peko1.jpg);
+	min-height: 100vh; 
+}
+
+.loginImage{
+		background-size: cover;
+	background-position: center top; 
+	background-repeat: no-repeat; 
+		background-image: url(../image/peko2.jpg);
+	min-height: 100vh; 
+}
+.registImage{
+		background-image: url(../pekoWallpaper.png);
+	background-color: #eeffff;
+		background-size: cover;
+	background-position: center top; 
+	background-repeat: no-repeat; 
+	min-height: 100vh; 
+}
+.loginOk{
+		background-image: url(../image/peko3.jpg);
+		background-size: cover;
+	background-position: center top; 
+	background-repeat: no-repeat; 
+	min-height: 100vh; 
+}
+
+
+h1{
+	color: #ffffff;
+	color: #ffffff;
+  -webkit-text-stroke: 1px #000000;
+	font-size: 10px;
+} 
+p{
+	font-size: 16px;
+}
+img{
+	max-width: 100%;
+}
+
+/* 大きな背景画像 */
+.big-bg{
+	background-size: cover;
+	background-position: center top; 
+	background-repeat: no-repeat; 
+}
+
+#top{
+	background-image: url(../image/peko1.jpg);
+	min-height: 100vh; 
+}
+#top .page-title{
+	text-transform: none;
+}
+#loginImage{
+	background-image: url(../image/peko2.jpg);
+	min-height: 100vh;
+}
+
+.wrapper{
+	max-width: 1100px;
+	 margin: 0 auto;
+	padding: 0 4%;
+}
+
+
+/* 真ん中文章 */
+.home-content{
+	text-align: center;
+	 margin-top: 20%;
+}
+
+.login-content{
+	text-align: right;
+	 margin-top: 5%;
+}
+.regist-content{
+	text-align: left;
+	 margin-top: 5%;
+}
+
+.loginOk-content{
+	text-align: center;
+	 margin-top: 5%;
+}
+
+/* 見出し */
+.page-title{
+	font-size: 4rem;
+	font-weight: normal;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.login-title{
+	font-size: 2.3rem;
+	font-weight: normal;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.loginOk-title{
+	font-size: 2.3rem;
+	font-weight: normal;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+
+
+/* ボタン */
+.button{
+	font-size: 0.800rem;
+	background: #0bd;
+	color: #fff;
+	border-radius: 15px;
+	padding: 10px 20px;
+}
+.button2{
+	font-size: 0.800rem;
+	background: #0bd;
+	color: #fff;
+	border-radius: 15px;
+	padding: 8px 18px;
+}
+.button:hover{
+	background: #0090aa;
+}
+
+/* ボタン横の空白 */
+.mgr-15{
+    margin-right : 20px;
+}
+
+
+/* フォーム */
+form div{
+	margin-bottom: 14px
+}
+label{
+	font-size: 1.125rem;
+	margin-bottom: 10px;
+	display: block;
+}
+input[type="text"],
+input[type="password"],
+textarea{
+	background: rgba(255,255,255,.5);
+	border: 1px #fff solid;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 1rem;
+}
+input[type="text"],
+input[type="password"]{
+	width: 100%;
+	max-width: 240px;
+}
+textarea{
+	width: 100%;
+	max-width: 480px;
+	height: 6rem;
+}
+input[type="submit"]{
+	border: none;
+	cursor: pointer;
+	line-height: 1;
+}
+
+/* ブラウザのデフォルトマージンで
+画像上部に余白生じる
+いったん↓ * で全部の要素のマージンを消す*/
+* {
+ margin: 0px;
+ padding: 0px;
+}
+
+
+/* ------------------------------------------- */
+/* 左の画像部分 */
+article{
+	width: 40%;
+}
+/* 右側のログイン部分 */
+aside{
+	width: 60%
+} 
+/* .welcome{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 50px;
+} */
