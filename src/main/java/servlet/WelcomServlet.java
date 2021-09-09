@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/WelcomServlet")
+@WebServlet("/public/WelcomServlet")
 public class WelcomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/welcome.jsp");	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/welcome.jsp");	
 		dispatcher.forward(request, response);
 	}
 

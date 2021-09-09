@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import model.NewRegistLogic;
 import model.RegistUser;
 
-@WebServlet("/CreateNewUser")
+@WebServlet("public/CreateNewUser")
 public class CreateNewUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
