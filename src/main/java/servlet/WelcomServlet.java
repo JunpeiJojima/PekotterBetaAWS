@@ -15,7 +15,7 @@ public class WelcomServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/welcome.jsp");	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/welcome.jsp");	
 		dispatcher.forward(request, response);
 	}
 
