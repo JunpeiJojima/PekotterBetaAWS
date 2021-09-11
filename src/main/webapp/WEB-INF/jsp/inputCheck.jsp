@@ -16,10 +16,10 @@
 <li>おなまえ：<c:out value="${registUser.getName()}"/> さん</li>
 <li>ねんれい：<c:out value="${registUser.getAge()}"/> 歳</li>
 </ul>
-<a href="/pekotterBeta1/CreateNewUser">
+<a href="/PekotterBetaAWS/CreateNewUser">
 <input type="submit" value="登録するぺこ">
 </a>
-<a href="/pekotterBeta1/Registration">
+<a href="/PekotterBetaAWS/Registration">
 <input type="submit" value="やめるぺこ">
 </a>
 </body>

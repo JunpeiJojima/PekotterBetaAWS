@@ -24,7 +24,7 @@
 		</c:if>
 		</div>
 
-		<form action="/pekotterBeta1/Registration" method="post">
+		<form action="/PekotterBetaAWS/Registration" method="post">
 
 			<!-- ユーザーID：<input type="text" name="userId"><br> -->
 			<div>

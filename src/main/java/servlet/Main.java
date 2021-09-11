@@ -50,7 +50,7 @@ public class Main extends HttpServlet {
 		
 		if(loginUser == null) { //ログインしてない場合は
 			//リダイレクト
-			response.sendRedirect("/example16/");
+			response.sendRedirect("/PekotterBetaAWS/");
 		}else { //ログイン済みの場合
 			//フォワード
 			RequestDispatcher dispatcher =

@@ -25,8 +25,8 @@
 	<div class="loginOk-content wrapper">
 			<h1 class="loginOk-title">ようこそ、<c:out value="${account.getName()}" />さん</h1>
 			<span class="mgr-15"><a class="button2"
-				href="/pekotterBeta1/Main"> つぶやき画面へGO! </a></span> <a class="button2"
-				href="/pekotterBeta1/WelcomServlet">トップへ戻るぺこ</a>
+				href="/PekotterBetaAWS/Main"> つぶやき画面へGO! </a></span> <a class="button2"
+				href="/PekotterBetaAWS/WelcomServlet">トップへ戻るぺこ</a>
 		</div>
 		<!-- /.home-content -->
 	

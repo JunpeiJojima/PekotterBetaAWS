@@ -16,7 +16,7 @@ import model.LoginLogicBO;
 
 // そのまま呼び出されたらGET　＝＞　ログイン画面へ
 // POSTで呼び出されたら　＝＞　ログイン成功画面へ
-@WebServlet("/public/LoginServlet")
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -16,10 +16,10 @@ User loginUser = (User) session.getAttribute("loginUser");
 <% if(loginUser != null) { %>
 <p>ログインに成功したぺこ！</p>
 <p>こんぺこ！<%= loginUser.getName() %>さん</p>
-<a href="/example14/Main">つぶやき画面へGOぺこ！</a>
+<a href="/PekotterBetaAWS/Main">つぶやき画面へGOぺこ！</a>
 <% } else { %>
 <p>ログイン失敗ぺこ…</p>
-<a href="/example14/">TOPへ戻るぺこ</a>
+<a href="/PekotterBetaAWS/">TOPへ戻るぺこ</a>
 <% } %>
 </body>
 </html>

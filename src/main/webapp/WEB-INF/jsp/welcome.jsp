@@ -16,8 +16,8 @@
 		<div class="home-content wrapper">
 			<h1 class="page-title">ぺこった～を、はじめようぺこ！</h1>
 			<span class="mgr-15"><a class="button"
-				href="/pekotterBetaAWS/LoginServlet"> ログイン </a></span> <a class="button"
-				href="/pekotterBetaAWS/Registration">アカウント作成</a>
+				href="/PekotterBetaAWS/LoginServlet"> ログイン </a></span> <a class="button"
+				href="/PekotterBetaAWS/Registration">アカウント作成</a>
 		</div>
 </body>
 </html>

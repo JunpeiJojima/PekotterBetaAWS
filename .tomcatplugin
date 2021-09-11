@@ -9,5 +9,5 @@
     <warLocation></warLocation>
     <extraInfo></extraInfo>
     <mavenClasspath>false</mavenClasspath>
-    <webPath>/pekotterBetaAWS</webPath>
+    <webPath>/PekotterBetaAWS</webPath>
 </tomcatProjectProperties>

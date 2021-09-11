@@ -15,7 +15,7 @@ import model.InputNullCheck;
 import model.RegistCheckLogic;
 import model.RegistUser;
 
-@WebServlet("/public/Registration")
+@WebServlet("/Registration")
 public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

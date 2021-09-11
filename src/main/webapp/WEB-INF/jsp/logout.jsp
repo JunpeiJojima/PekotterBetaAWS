@@ -9,6 +9,6 @@
 <body>
 <h1>ぺこった～ログアウト</h1>
 <p>ログアウトしましたぺこ</p>
-<a href="/pekotterBeta1/WelcomServlet">トップに戻るぺこ</a>
+<a href="/PekotterBetaAWS/WelcomServlet">トップに戻るぺこ</a>
 </body>
 </html>

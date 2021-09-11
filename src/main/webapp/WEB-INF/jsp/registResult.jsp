@@ -12,12 +12,12 @@
 <c:choose>
 <c:when test="${registResult}">
 <p>新規アカウント作成に成功したぺこ！</p>
-<a href="/pekotterBeta1/LoginServlet">ログイン画面へGOぺこ！</a>
+<a href="/PekotterBetaAWS/LoginServlet">ログイン画面へGOぺこ！</a>
 </c:when>
 <c:otherwise>
 <p>ログイン失敗ぺこ…</p>
 <p>お手数ですが、最初から登録よろぺこ</p>
-<a href="/pekotterBeta1/WelcomServlet">TOPへ戻るぺこ</a>
+<a href="/PekotterBetaAWS/WelcomServlet">TOPへ戻るぺこ</a>
 </c:otherwise>
 </c:choose>
 </body>

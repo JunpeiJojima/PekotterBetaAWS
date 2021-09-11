@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:forward page="/public/WelcomServlet"/>
+<jsp:forward page="/WelcomServlet"/>
 <title>PekotterBeta</title>
 </head>
 <body>

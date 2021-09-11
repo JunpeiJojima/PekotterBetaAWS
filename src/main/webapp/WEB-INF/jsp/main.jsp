@@ -13,10 +13,10 @@
 <h1>ぺこった～メイン</h1>
 <p>
 <c:out value="${account.getName()}" />さん、ログイン中ぺこ
-<a href="/pekotterBeta1/Logout">さよならぺこ・・・</a>
+<a href="/PekotterBetaAWS/Logout">さよならぺこ・・・</a>
 </p>
-<p><a href="/pekotterBeta1/Main">更新ぺこ</a></p>
-<form action="/pekotterBeta1/Main" method="post">
+<p><a href="/PekotterBetaAWS/Main">更新ぺこ</a></p>
+<form action="/PekotterBetaAWS/Main" method="post">
 <input type="text" name="text">
 <input type="submit" value="ぽえみんぐぺこ">
 </form>
