@@ -27,21 +27,10 @@ public class Main extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-//		//つぶやきリストをアプリケーションスコープから取得
-//		ServletContext application = this.getServletContext();
-//		List<Tweet> tweetList = (List<Tweet>)application.getAttribute("mutterList");
-//		//取得できなかった場合は、つぶやきリストを新規作成して
-//		//アプリケーションスコープに保存
-//		if(tweetList == null) {
-//			tweetList = new ArrayList<>();
-//			application.setAttribute("tweetList", tweetList);
-//		}
-		
 		//つぶやきリストを取得してリクエストスコープに保存
 		GetTweetListLogic getTweetListLogic = new GetTweetListLogic();
 		List<Tweet> tweetList = getTweetListLogic.execute();
 		request.setAttribute("tweetList", tweetList);
-		
 		
 		//ログインしているか確認するため
 		//セッションスコープからユーザー情報を取得
@@ -83,10 +72,9 @@ public class Main extends HttpServlet {
 			
 			//つぶやきをデータベースに追加
 			// PostTweet.execute => TweetDao.create(ここでインサート)
-			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-			Tweet tweet = new Tweet(loginUser.getName(),text,df.format(new Date()));
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			Tweet tweet = new Tweet(loginUser.getName(),text,df.format(new Date()),loginUser.getUserId());
 			PostTweetLogic postTweetLogic = new PostTweetLogic();
-			//postTweetLogic.execute(tweet, tweetList);
 			postTweetLogic.execute(tweet);
 			
 //			//アプリケーションスコープにつぶやきリストを保存
