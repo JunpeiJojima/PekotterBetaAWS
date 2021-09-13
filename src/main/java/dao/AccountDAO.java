@@ -15,9 +15,12 @@ import model.RegistUser;
 
 public class AccountDAO {
 	
-	private final String SQL_PASS = "./sqlFile/AccountsData/accounts.db"; 
-	private final String URL = "jdbc:sqlite:./sqlFile/AccountsData/accounts.db";
-	private final String directoryPath = "./sqlFile/AccountsData";
+	File fName = new File("account.db");
+	String AbPath = fName.getAbsolutePath();
+	
+	private final String SQL_PASS = "/sqlFile/AccountsData/accounts.db"; 
+	private final String URL = "jdbc:sqlite:" + AbPath;
+	private final String directoryPath = "/sqlFile/AccountsData";
 	private final String CREATE_TABLE_SQL = "create table account("
 			+ "user_id text not null primary key"
 			+ ",pass text not null"
@@ -34,13 +37,17 @@ public class AccountDAO {
 		
 		Account account=null;
 		
-		dirCheck();
+		//dirCheck();
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
+		
+		System.out.println(AbPath);
+		System.out.println(URL);
+		
 		try(Connection conn = DriverManager.getConnection(URL);
 				Statement ps = conn.createStatement()){
 			
@@ -87,7 +94,7 @@ public class AccountDAO {
 		public Account findByIdMail(RegistUser registUser) {
 			Account account=null;
 			
-			dirCheck();
+			//dirCheck();
 			
 			String sql = 
 					"select user_id, pass, mail, name, age "

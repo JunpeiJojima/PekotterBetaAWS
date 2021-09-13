@@ -14,10 +14,13 @@ import java.util.List;
 import model.Tweet;
 
 public class TweetDAO {
+	
+	File fName = new File("tweet.db");
+	String AbPath = fName.getAbsolutePath();
 
-	private final String SQL_PASS = "./sqlFile/TweetsData/tweets.db";
-	private final String URL = "jdbc:sqlite:./sqlFile/TweetsData/tweets.db";
-	private final String directoryPath = "./sqlFile/TweetsData";
+	private final String SQL_PASS = "/sqlFile/TweetsData/tweets.db";
+	private final String URL = "jdbc:sqlite:" + AbPath;
+	private final String directoryPath = "/sqlFile/TweetsData";
 	private final String CREATE_TABLE_SQL = "create table tweet(" + "id integer primary key autoincrement "
 			+ ",name text not null" + ",text text not null" + ",time text not null" + ",user_id text not null);";
 
