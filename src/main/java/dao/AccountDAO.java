@@ -142,6 +142,11 @@ public class AccountDAO {
 					"INSERT INTO account(user_id, pass, mail, name, age)"
 					+ " values(?,?,?,?,?) ";
 			
+			try {
+				Class.forName("org.sqlite.JDBC");
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
 			try (Connection conNe = DriverManager.getConnection(URL);
 					PreparedStatement pStmt = conNe.prepareStatement(sql)){
 					
