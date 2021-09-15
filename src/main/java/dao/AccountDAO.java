@@ -1,13 +1,16 @@
 package dao;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import model.Account;
 import model.LoginEntity;
@@ -15,54 +18,46 @@ import model.RegistUser;
 
 public class AccountDAO {
 	
-	File fName = new File("account.db");
-	String AbPath = fName.getAbsolutePath();
-	
-	private final String SQL_PASS = "/sqlFile/AccountsData/accounts.db"; 
-	private final String URL = "jdbc:sqlite:" + AbPath;
-	private final String directoryPath = "/sqlFile/AccountsData";
 	private final String CREATE_TABLE_SQL = "create table account("
-			+ "user_id text not null primary key"
-			+ ",pass text not null"
-			+ ",mail text not null"
-			+ ",name text not null"
-			+ ",age integer not null);";
+			+ "user_id varchar(15) not null"
+			+ ",pass varchar(32) not null"
+			+ ",mail varchar(256) not null"
+			+ ",name varchar(50) not null"
+			+ ",age integer not null"
+			+ ",primary key (user_id));";
 	
-	private File file = new File(SQL_PASS);
-	private File dirrectry = new File(directoryPath);
-		
 	// loginEntityのログイン情報を引数に入れてデータベースで照合する
 	//  見つかれば登録情報をAccountインスタンスに、なければnullで返す
 	public Account findByLogin(LoginEntity loginEntity) {
 		
 		Account account=null;
 		
-		//dirCheck();
-		
 		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		
-		System.out.println(AbPath);
-		System.out.println(URL);
-		
-		try(Connection conn = DriverManager.getConnection(URL);
-				Statement ps = conn.createStatement()){
+			Context initialContext = new InitialContext();
+			Context envContext = (Context) initialContext.lookup("java:/comp/env");
+			DataSource dataSource = (DataSource) envContext.lookup("jdbc/pekotter");
+			Connection connection = dataSource.getConnection();
+			Statement ps = connection.createStatement();
 			
 			//テーブルがあるかないかのif 文 なければ新規作成
-			DatabaseMetaData dbm = conn.getMetaData();
+			DatabaseMetaData dbm = connection.getMetaData();
 			ResultSet tables = dbm.getTables(null, null, "account", null);
 			boolean tableCheck;
 			if (tableCheck = !tables.next()) {
 				// Table does not exist
-				ps.execute(CREATE_TABLE_SQL);
+				ps.executeUpdate(CREATE_TABLE_SQL);
 			} else if(!tableCheck) {
 			
 			String sql = 
-					"select user_id, pass, mail, name, age from account where user_id = ? and pass = ?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+					"select "
+					+ "user_id"
+					+ ", pass"
+					+ ", mail"
+					+ ", name"
+					+ ", age "
+					+ "from account "
+					+ "where user_id = ? and pass = ?";
+			PreparedStatement pStmt = connection.prepareStatement(sql);
 			pStmt.setString(1, loginEntity.getUserId());
 			pStmt.setString(2, loginEntity.getPass());
 			
@@ -80,44 +75,46 @@ public class AccountDAO {
 				account = new Account(userId,pass,mail,name,age);
 			}
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | NamingException e) {
 			e.printStackTrace();
 			return null;
 		}
 		// 見つかったユーザーまたはnullを返す
 		return account;
 	}
-
 	
 	// RegistUserの新規登録情報を引数に入れて、IDとmailが使われてないかデータベースで照合する
 		//  見つかれば既存の登録情報をAccountインスタンスに、なければnullで返す
 		public Account findByIdMail(RegistUser registUser) {
 			Account account=null;
 			
-			//dirCheck();
-			
 			String sql = 
-					"select user_id, pass, mail, name, age "
-					+ "from account where user_id = ? or mail = ?";
+					"select "
+					+ "user_id, "
+					+ "pass, "
+					+ "mail, "
+					+ "name, "
+					+ "age "
+					+ "from account "
+					+ "where user_id = ? or mail = ?";
 			
 			try {
-				Class.forName("org.sqlite.JDBC");
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			}
-			try(Connection conNe = DriverManager.getConnection(URL);
-					Statement ps = conNe.createStatement()){
+				Context initialContext = new InitialContext();
+				Context envContext = (Context) initialContext.lookup("java:/comp/env");
+				DataSource dataSource = (DataSource) envContext.lookup("jdbc/pekotter");
+				Connection connection = dataSource.getConnection();
+				Statement ps = connection.createStatement();
 				
 				//テーブルがあるかないかのif 文 なければ新規作成
-				DatabaseMetaData dbm = conNe.getMetaData();
+				DatabaseMetaData dbm = connection.getMetaData();
 				ResultSet tables = dbm.getTables(null, null, "account", null);
 				boolean tableCheck;
 				if (tableCheck = !tables.next()) {
 					// Table does not exist
-					ps.execute(CREATE_TABLE_SQL);
+					ps.executeUpdate(CREATE_TABLE_SQL);
 				} else if(!tableCheck) {
 				
-				PreparedStatement pStmt = conNe.prepareStatement(sql);
+				PreparedStatement pStmt = connection.prepareStatement(sql);
 				pStmt.setString(1, registUser.getUserId());
 				pStmt.setString(2, registUser.getMail());
 				
@@ -135,7 +132,7 @@ public class AccountDAO {
 					account = new Account(userId,pass,mail,name,age);
 				}
 				}
-			} catch (SQLException e) {
+			} catch (SQLException | NamingException e) {
 				e.printStackTrace();
 				return null;
 			}
@@ -146,16 +143,20 @@ public class AccountDAO {
 		public boolean newRegist(RegistUser registUser) {
 			
 			String sql = 
-					"INSERT INTO account(user_id, pass, mail, name, age)"
+					"INSERT INTO account("
+					+ "user_id, "
+					+ "pass, "
+					+ "mail, "
+					+ "name, "
+					+ "age)"
 					+ " values(?,?,?,?,?) ";
 			
 			try {
-				Class.forName("org.sqlite.JDBC");
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			}
-			try (Connection conNe = DriverManager.getConnection(URL);
-					PreparedStatement pStmt = conNe.prepareStatement(sql)){
+				Context initialContext = new InitialContext();
+				Context envContext = (Context) initialContext.lookup("java:/comp/env");
+				DataSource dataSource = (DataSource) envContext.lookup("jdbc/pekotter");
+				Connection connection = dataSource.getConnection();
+				PreparedStatement pStmt = connection.prepareStatement(sql);
 					
 			pStmt.setString(1, registUser.getUserId());
 			pStmt.setString(2, registUser.getPass());
@@ -167,7 +168,7 @@ public class AccountDAO {
 			if(result != 1) {
 				return false;
 			}
-			}catch (SQLException e) {
+			}catch (SQLException | NamingException e) {
 				e.printStackTrace();
 				return false;
 			}
@@ -175,11 +176,5 @@ public class AccountDAO {
 			return true;
 		}
 	
-		private void dirCheck() {
-			//フォルダが無ければ作成する処理
-			if (!file.exists()){
-				dirrectry.mkdirs();
-			}
-		}
 
 }
