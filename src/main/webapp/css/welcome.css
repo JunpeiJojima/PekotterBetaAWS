@@ -4,45 +4,40 @@ html{
 }
 
 body{
-	/* background-color: #fffeee;
-	background-image: url(../image/peko1.jpg);
-	background-repeat: no-repest;
-	background-size: cover; */
 	line-height: 1.7; 
 	color: #432;
 }
 
 .topImage{
-		background-size: cover;
+	background-size: cover;
 	background-position: center top; 
 	background-repeat: no-repeat; 
-		background-image: url(../image/peko1.jpg);
+	background-image: url(../image/peko1.jpg);
 	min-height: 100vh; 
 }
 
 .loginImage{
-		background-size: cover;
+	background-size: cover;
 	background-position: center top; 
 	background-repeat: no-repeat; 
-		background-image: url(../image/peko2.jpg);
+	background-image: url(../image/peko2.jpg);
 	min-height: 100vh; 
 }
 .registImage{
-		background-image: url(../pekoWallpaper.png);
-	background-color: #eeffff;
-		background-size: cover;
+	background-image: url(../image/pekoWallpaper.png);
+	background-color: #d2ffff;
+	background-size: cover;
 	background-position: center top; 
 	background-repeat: no-repeat; 
 	min-height: 100vh; 
 }
 .loginOk{
-		background-image: url(../image/peko3.jpg);
-		background-size: cover;
+	background-image: url(../image/peko3.jpg);
+	background-size: cover;
 	background-position: center top; 
 	background-repeat: no-repeat; 
 	min-height: 100vh; 
 }
-
 
 h1{
 	color: #ffffff;
@@ -82,7 +77,6 @@ img{
 	padding: 0 4%;
 }
 
-
 /* 真ん中文章 */
 .home-content{
 	text-align: center;
@@ -120,18 +114,16 @@ img{
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-
-
 /* ボタン */
 .button{
-	font-size: 0.800rem;
+	font-size: 1.000rem;
 	background: #0bd;
 	color: #fff;
 	border-radius: 15px;
 	padding: 10px 20px;
 }
 .button2{
-	font-size: 0.800rem;
+	font-size: 1.000rem;
 	background: #0bd;
 	color: #fff;
 	border-radius: 15px;
@@ -145,7 +137,6 @@ img{
 .mgr-15{
     margin-right : 20px;
 }
-
 
 /* フォーム */
 form div{
@@ -188,9 +179,6 @@ input[type="submit"]{
  margin: 0px;
  padding: 0px;
 }
-
-
-/* ------------------------------------------- */
 /* 左の画像部分 */
 article{
 	width: 40%;
@@ -199,8 +187,3 @@ article{
 aside{
 	width: 60%
 } 
-/* .welcome{
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 50px;
-} */

@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+html {
+	font-size: 100%;
+}
+
+body {
+	background-color: rgb(164, 255, 255), 247, 247);
+	font-family: 'Sawarabi Gothic', sans-serif;
+	line-height: 1.7;
+	color: #432;
+}
+
+aside {
+	width: 32%;
+	font-size: 18px;
+	border-width: 2px;
+	border-color:  #0bd;
+	border-style: none dotted none none;
+}
+article {
+	width: 60%;
+
+}
+
+.main-content {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 50px;
+}
+
+h1 {
+	text-align: center;
+	padding: 50px;
+	font-size: 30px;
+}
+h2 {
+	padding: 50px;
+	font-size: 30px;
+}
+
+.wrapper {
+	/*
+	max-width: 1100px;
+	max-height: 200px;
+	*/
+	margin: 0 auto;
+	padding: 0 4%;
+}
+
+
+.bg {
+	background-image: url(../image/pekoWallpaper.png);
+	background-color: #eeffff;
+	background-size: cover;
+	background-position: center top; 
+	background-repeat: no-repeat; 
+	min-height: 90vh; 
+}
+
+.bg-mask {
+	height: 100%;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+#maintable {
+	text-align: left;
+	
+}
+table {
+	font-size: 18px;
+}
+
+table tr{
+	border-collapse:collapse;
+    border-bottom: 2px solid #0bd;
+}
+.td-css{
+	border-width: 2px;
+	border-color:  #0bd;
+	border-style: none none solid none;
+}
+
+textarea {
+	width: 280px; 
+	height: 100px;
+}
+
+.button{
+	font-size: 1.000rem;
+	background: #0bd;
+	color: #fff;
+	border-radius: 15px;
+	padding: 10px 20px;
+}
+
+
