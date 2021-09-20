@@ -16,11 +16,6 @@
 
 <!-- <body> -->
 <body class="loginOk">
-	<!-- <p>
-		ようこそ
-		<c:out value="${account.getName()}" />
-		さん
-	</p> -->
 	
 	<div class="loginOk-content wrapper">
 			<h1 class="loginOk-title">ようこそ、<c:out value="${account.getName()}" />さん</h1>
@@ -28,10 +23,6 @@
 				href="/PekotterBetaAWS/Main"> つぶやき画面へGO! </a></span> <a class="button2"
 				href="/PekotterBetaAWS/WelcomServlet">トップへ戻るぺこ</a>
 		</div>
-		<!-- /.home-content -->
-	
-	<!-- <a href="/pekotterBeta1/Main">つぶやき画面へGOぺこ！</a> -->
-	<!-- <a href="/pekotterBeta1/WelcomServlet">トップへ戻るぺこ</a> -->
 
 </body>
 </html>

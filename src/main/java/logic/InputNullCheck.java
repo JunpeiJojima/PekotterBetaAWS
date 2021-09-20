@@ -1,4 +1,6 @@
-package model;
+package logic;
+
+import entity.RegistUser;
 
 public class InputNullCheck {
 	public boolean nullCheck(RegistUser registUser) {

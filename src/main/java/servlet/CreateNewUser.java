@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.NewRegistLogic;
-import model.RegistUser;
+import entity.RegistUser;
+import logic.NewRegistLogic;
 
 @WebServlet("/CreateNewUser")
 public class CreateNewUser extends HttpServlet {

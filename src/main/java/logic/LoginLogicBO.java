@@ -1,6 +1,8 @@
-package model;
+package logic;
 
 import dao.AccountDAO;
+import entity.Account;
+import entity.LoginEntity;
 
 public class LoginLogicBO {
 	

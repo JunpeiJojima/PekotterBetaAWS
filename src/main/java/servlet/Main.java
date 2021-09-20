@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Account;
-import model.GetTweetListLogic;
-import model.PostTweetLogic;
-import model.Tweet;
+import entity.Account;
+import entity.Tweet;
+import logic.GetTweetListLogic;
+import logic.PostTweetLogic;
 
 
 @WebServlet("/Main")
@@ -45,7 +46,6 @@ public class Main extends HttpServlet {
 			RequestDispatcher dispatcher =
 					request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
 			dispatcher.forward(request, response);
-			
 		}
 	}
 	
@@ -60,25 +60,18 @@ public class Main extends HttpServlet {
 		if(text != null && text.length() != 0) {
 			//強制的に語尾にぺこをつける
 			text = text.concat("ぺこ");
-			//アプリスコに保存されたつぶやきリストを取得
-//			ServletContext application = this.getServletContext();
-//			List<Tweet> tweetList =
-//					(List<Tweet>) application.getAttribute("tweetList");
 			
 			//セッションスコープに保存されたユーザー情報を取得
 			HttpSession session = request.getSession();
 			Account loginUser = (Account) session.getAttribute("account");
 			
-			
 			//つぶやきをデータベースに追加
-			// PostTweet.execute => TweetDao.create(ここでインサート)
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			Locale japan = new Locale("ja","JP","JP");
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm",japan);
 			Tweet tweet = new Tweet(loginUser.getName(),text,df.format(new Date()),loginUser.getUserId());
 			PostTweetLogic postTweetLogic = new PostTweetLogic();
 			postTweetLogic.execute(tweet);
 			
-//			//アプリケーションスコープにつぶやきリストを保存
-//			application.setAttribute("tweetList", tweetList);
 		}else {
 			// エラーメッセージをrequestスコープに保存
 			request.setAttribute("errorMsg", "ぽえむが未入力ぺこよ");

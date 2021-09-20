@@ -19,21 +19,24 @@
 </head>
 <body>
 	<div class="bg">
-		<!--  <div class="bg-mask">
-				-->
 		<h1>Home</h1>
 		<div class="main-content wrapper">
 
 			<aside>
 
 				<p style="text-align: left">
-					ログイン中のアカウント : <br> <b><c:out value="${account.getName()}" /></b>
-					さん <br> <br> <a href="/PekotterBetaAWS/Logout"> ログアウト</a>
+					ログイン中のアカウント : 
+					<br> 
+					<b><c:out value="${account.getName()}" /></b>
+					さん 
+					<br> <br>
+					<small><a href="/PekotterBetaAWS/Logout"> ログアウト</a></small>
 				</p>
 
 				<br>
 				<form action="/PekotterBetaAWS/Main" method="post">
 					<textarea name="text" placeholder="いま何してるぺこ？"></textarea>
+					<br>
 					<input type="submit" class="button" value="ぽえみんぐぺこ">
 				</form>
 				<c:if test="${not empty errorMsg}">
@@ -47,18 +50,27 @@
 
 
 			<article>
-				<table id="maintable">
+				<table id="maintable" >
 					<c:forEach var="tweet" items="${tweetList}">
 						<tr>
-							<th><c:out value="${tweet.getUserName()}" /> :</th>
-							<td><small><c:out value="${tweet.getTime()}" /></small></td>
+							<th  class="td-css"><c:out value="${tweet.getUserName()}" /> :</th>
+							<td  class="td-css"><small><c:out value="${tweet.getTime()}" /></small></td>
 						</tr>
 						<tr>
-							<td class="td-css" colspan="2"><c:out
+							<td colspan="2"><c:out
 									value="${tweet.getText()}" /></td>
 						</tr>
 						<tr>
+							<td><a href="/PekotterBetaAWS/GoodNumServlet?id=${tweet.getId()}">いいぺこ♡</a> 
+							<c:out value="${tweet.getGoodNum()}" /></td>
 						</tr>
+						<c:if test="${tweet.getUserName() == account.getName() 
+									&& tweet.getUser_id() == account.getUserId()}">
+						<tr>
+							<td><small><a href="/PekotterBetaAWS/EditTweetServlet?id=${tweet.getId()}">編集</a></small></td>
+							<td><small><a href="/PekotterBetaAWS/DeleteTweetServlet?id=${tweet.getId()}">削除</a></small></td>
+						</tr>
+						</c:if>
 					</c:forEach>
 				</table>
 				<br> <br>

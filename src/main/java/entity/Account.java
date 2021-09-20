@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 // accountテーブルのレコードを表すEntity
 public class Account {

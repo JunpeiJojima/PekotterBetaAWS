@@ -1,6 +1,7 @@
-package model;
+package logic;
 
 import dao.AccountDAO;
+import entity.RegistUser;
 
 //ユーザー登録の処理
 public class NewRegistLogic {

@@ -15,7 +15,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import model.Tweet;
+import entity.Tweet;
 
 public class TweetDAO {
 	
@@ -41,7 +41,6 @@ public class TweetDAO {
 			Connection connection = dataSource.getConnection();
 			Statement ps = connection.createStatement();
 
-			// テーブルがあるかないかのif 文 なければ新規作成
 			DatabaseMetaData dbm = connection.getMetaData();
 			ResultSet tables = dbm.getTables(null, null, "tweet", null);
 			boolean tableCheck;
@@ -54,20 +53,20 @@ public class TweetDAO {
 						+ ",NAME"
 						+ ",TEXT"
 						+ ",TIME "
+						+ ",USER_ID "
+						+ ",GOOD_NUM "
 						+ "FROM tweet ORDER BY ID desc";
-				// SQLの送信
 				PreparedStatement pStmt = connection.prepareStatement(sql);
-				// 結果表をrsに取得
 				ResultSet rs = pStmt.executeQuery();
 
-				// 結果をListに格納
 				while (rs.next()) {
 					int id = rs.getInt("ID");
 					String userName = rs.getString("NAME");
 					String text = rs.getString("TEXT");
 					String time = rs.getString("TIME");
-					// ↑DBから各値を取得し、↓つぶやきインスタンスのフィールドに設定する
-					Tweet tweet = new Tweet(id, userName, text, time);
+					String user_id = rs.getString("USER_ID");
+					int good = rs.getInt("GOOD_NUM");
+					Tweet tweet = new Tweet(id, userName, text, time,user_id,good);
 					tweetList.add(tweet);
 				}
 			}
@@ -76,6 +75,45 @@ public class TweetDAO {
 			return null;
 		}
 		return tweetList;
+	}
+	
+	public Tweet findTweet(int tweet_id) {
+
+		Tweet tweet = new Tweet();
+
+		try {
+			Context initialContext = new InitialContext();
+			Context envContext = (Context) initialContext.lookup("java:/comp/env");
+			DataSource dataSource = (DataSource) envContext.lookup("jdbc/pekotter");
+			Connection connection = dataSource.getConnection();
+
+				String sql = "SELECT ID"
+						+ ",NAME"
+						+ ",TEXT"
+						+ ",TIME "
+						+ ",USER_ID "
+						+ ",GOOD_NUM "
+						+ "FROM tweet WHERE ID = ?";
+				PreparedStatement pStmt = connection.prepareStatement(sql);
+				pStmt.setInt(1, tweet_id);
+				ResultSet rs = pStmt.executeQuery();
+
+				while (rs.next()) {
+					int id = rs.getInt("ID");
+					String userName = rs.getString("NAME");
+					String text = rs.getString("TEXT");
+					String time = rs.getString("TIME");
+					String user_id = rs.getString("USER_ID");
+					int good = rs.getInt("GOOD_NUM");
+					Tweet setTweet = new Tweet(id, userName, text, time,user_id, good);
+					tweet = setTweet;
+				
+			}
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return tweet;
 	}
 
 	public boolean create(Tweet tweet) {
@@ -94,13 +132,11 @@ public class TweetDAO {
 			Connection connection = dataSource.getConnection();
 			PreparedStatement pStmt = connection.prepareStatement(sql);
 
-			// INSERTの??に使用する値を設定する
 			pStmt.setString(1, tweet.getUserName());
 			pStmt.setString(2, tweet.getText());
 			pStmt.setString(3, tweet.getTime());
 			pStmt.setString(4, tweet.getUser_id());
 
-			// INSERT文を実行（resultには追加された行数が入る）
 			int result = pStmt.executeUpdate();
 			if (result != 1) {
 				return false;
@@ -112,4 +148,78 @@ public class TweetDAO {
 
 		return true;
 	}
+	public boolean goodNum(int id) {
+
+		String sql = "UPDATE tweet SET good_num = (good_num + 1) where id = ?";
+
+		try {
+			Context initialContext = new InitialContext();
+			Context envContext = (Context) initialContext.lookup("java:/comp/env");
+			DataSource dataSource = (DataSource) envContext.lookup("jdbc/pekotter");
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pStmt = connection.prepareStatement(sql);
+
+			pStmt.setInt(1, id);
+
+			int result = pStmt.executeUpdate();
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+	public boolean edit(String text ,int id) {
+
+		String sql = "UPDATE tweet SET text = ? where id = ?";
+
+		try {
+			Context initialContext = new InitialContext();
+			Context envContext = (Context) initialContext.lookup("java:/comp/env");
+			DataSource dataSource = (DataSource) envContext.lookup("jdbc/pekotter");
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pStmt = connection.prepareStatement(sql);
+
+			pStmt.setString(1, text);
+			pStmt.setInt(2, id);
+
+			int result = pStmt.executeUpdate();
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+	public boolean delete(int id) {
+		
+		String sql = "DELETE FROM tweet WHERE id = ?";
+		
+		try {
+			Context initialContext = new InitialContext();
+			Context envContext = (Context) initialContext.lookup("java:/comp/env");
+			DataSource dataSource = (DataSource) envContext.lookup("jdbc/pekotter");
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pStmt = connection.prepareStatement(sql);
+			
+			pStmt.setInt(1, id);
+			
+			int result = pStmt.executeUpdate();
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
 }

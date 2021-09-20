@@ -1,6 +1,8 @@
-package model;
+package logic;
 
 import dao.AccountDAO;
+import entity.Account;
+import entity.RegistUser;
 
 public class RegistCheckLogic {
 	public Account registCheck(RegistUser registUser) {

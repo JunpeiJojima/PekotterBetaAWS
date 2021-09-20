@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 // ログインで入力された情報
 public class LoginEntity {

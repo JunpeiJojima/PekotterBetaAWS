@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Account;
-import model.LoginEntity;
-import model.LoginLogicBO;
+import entity.Account;
+import entity.LoginEntity;
+import logic.LoginLogicBO;
 
 // そのまま呼び出されたらGET　＝＞　ログイン画面へ
 // POSTで呼び出されたら　＝＞　ログイン成功画面へ

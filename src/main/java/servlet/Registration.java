@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Account;
-import model.InputNullCheck;
-import model.RegistCheckLogic;
-import model.RegistUser;
+import entity.Account;
+import entity.RegistUser;
+import logic.InputNullCheck;
+import logic.RegistCheckLogic;
 
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {

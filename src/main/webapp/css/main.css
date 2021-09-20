@@ -61,20 +61,15 @@ h1 {
 
 #maintable {
 	text-align: left;
-	
 }
 table {
 	font-size: 18px;
-}
-
-table tr{
-	border-collapse:collapse;
-    border-bottom: 2px solid #0bd;
+	border-collapse: collapse;
 }
 .td-css{
 	border-width: 2px;
 	border-color:  #0bd;
-	border-style: none none solid none;
+	border-style: solid none none none;
 }
 
 textarea {

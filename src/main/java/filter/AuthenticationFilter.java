@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import constant.Constant;
-import model.Account;
+import entity.Account;
 
 /**
  * 認証フィルタ

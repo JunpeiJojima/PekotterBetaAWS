@@ -12,9 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import model.Account;
-import model.LoginEntity;
-import model.RegistUser;
+import entity.Account;
+import entity.LoginEntity;
+import entity.RegistUser;
 
 public class AccountDAO {
 	

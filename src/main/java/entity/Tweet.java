@@ -1,14 +1,15 @@
-package model;
+package entity;
 
 import java.io.Serializable;
 
 //つぶやきの情報持つJavaBeans
 public class Tweet implements Serializable{
-	private int id; // ID
-	private String userName;//ユーザー名
-	private String text;    //つぶやき内容
-	private String time; //つぶやき時間
+	private int id; 
+	private String userName;
+	private String text; 
+	private String time;
 	private String user_id;
+	private int goodNum;
 	
 	public Tweet() {}
 	public Tweet(String userName,String text,String time,String user_id) {
@@ -17,11 +18,13 @@ public class Tweet implements Serializable{
 		this.setTime(time);
 		this.setUser_id(user_id);
 	}
-	public Tweet(int id,String userName,String text,String time) {
+	public Tweet(int id,String userName,String text,String time, String user_id, int good) {
 		this.setId(id);
 		this.setUserName(userName);
 		this.setText(text);
 		this.setTime(time);
+		this.setUser_id(user_id);
+		this.setGoodNum(good);
 	}
 	
 	
@@ -54,6 +57,12 @@ public class Tweet implements Serializable{
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public int getGoodNum() {
+		return goodNum;
+	}
+	public void setGoodNum(int goodNum) {
+		this.goodNum = goodNum;
 	}
 
 }
